@@ -1,6 +1,6 @@
 import express from "express";
 import connectDB from './config/database.js';
-import productsRouter from './routes/products.routes.js';
+import productsRouter from './routes/products.router.js';
 
 const app = express();
 const PORT = process.env.PORT || 8080;
