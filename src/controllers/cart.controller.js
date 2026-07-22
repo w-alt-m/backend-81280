@@ -12,7 +12,7 @@ export const createCart = async (req, res) => {
 export const getCartById = async (req, res) => {
     try {
         const { cid } = req.params;
-        const cart = await cartModel.findById(cid);
+        const cart = await cartModel.findById(cid).populate('products.product');
         if (!cart) return res.status(404).json({ status: 'error', error: 'Carrito no encontrado' });
         res.json({ status: 'success', payload: cart });
     } catch (error) {
