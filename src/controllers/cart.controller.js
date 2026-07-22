@@ -23,13 +23,15 @@ export const getCartById = async (req, res) => {
 export const addProductToCart = async (req, res) => {
     try {
         const { cid, pid } = req.params;
+
         const cart = await cartModel.findById(cid);
+
         if (!cart) return res.status(404).json({ status: 'error', error: 'Carrito no encontrado' });
 
-        const productIndex = cart.products.findIndex(p => p.product.toString() === pid);
+        const existingProduct = cart.products.find(p => p.product.toString() === pid);
 
-        if (productIndex !== -1) {
-            cart.products[productIndex].quantity += 1;
+        if (existingProduct) {
+            existingProduct.quantity += 1;
         } else {
             cart.products.push({ product: pid, quantity: 1 });
         }
