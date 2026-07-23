@@ -4,8 +4,8 @@
   "description": "��#\u0000 \u0000b\u0000a\u0000c\u0000k\u0000e\u0000n\u0000d\u0000-\u00008\u00001\u00002\u00008\u00000\u0000\r\u0000 \u0000",
   "main": "index.js",
   "scripts": {
-  "start": "node src/app.js",
-  "dev": "node --watch src/app.js"
+    "start": "node src/app.js",
+    "dev": "node --watch src/app.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,8 @@
   "dependencies": {
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
-    "mongoose": "^9.7.4"
+    "express-handlebars": "^9.0.1",
+    "mongoose": "^9.7.4",
+    "socket.io": "^4.8.3"
   }
 }
