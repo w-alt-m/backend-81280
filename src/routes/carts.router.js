@@ -3,7 +3,10 @@ import {
     createCart,
     getCartById,
     addProductToCart,
-    deleteProductFromCart
+    deleteProductFromCart,
+    clearCart,
+    updateCart,
+    updateProductQuantityInCart
 } from '../controllers/cart.controller.js';
 
 const router = Router();
@@ -14,5 +17,6 @@ router.post('/:cid/product/:pid', addProductToCart);
 router.delete('/:cid/products/:pid', deleteProductFromCart);
 router.delete('/:cid', clearCart);
 router.put('/:cid', updateCart);
+router.put('/:cid/product/:pid', updateProductQuantityInCart);
 
 export default router;

@@ -74,3 +74,23 @@ export const clearCart = async (req, res) => {
         res.status(500).json({ status: 'error', error: error.message });
     }
 };
+
+export const updateProductQuantityInCart = async (req, res) => {
+    try {
+        const { cid, pid } = req.params;
+        const { quantity } = req.body;
+
+        const cart = await cartModel.findById(cid);
+        if (!cart) return res.status(404).json({ status: 'error', error: 'Carrito no encontrado' });
+
+        const productInCart = cart.products.find(p => p.product.toString() === pid);
+        if (!productInCart) return res.status(404).json({ status: 'error', error: 'Producto no encontrado en el carrito' });
+
+        productInCart.quantity = quantity;
+
+        await cart.save();
+        res.json({ status: 'success', payload: cart });
+    } catch (error) {
+        res.status(500).json({ status: 'error', error: error.message });
+    }
+};
