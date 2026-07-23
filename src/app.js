@@ -23,6 +23,11 @@ app.set('views', path.resolve('src/views'));
 // Middleware archivos estáticos
 app.use(express.static('public'));
 
+// Test
+app.get('/test-view', (req, res) => {
+    res.render('home');
+});
+
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
