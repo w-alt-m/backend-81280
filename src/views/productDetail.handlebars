@@ -1,0 +1,19 @@
+<div class="row justify-content-center mt-4">
+    <div class="col-12 col-md-8 col-lg-6">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title mb-3">{{product.title}}</h2>
+                <p class="card-text">{{product.description}}</p>
+                <hr>
+                <p class="card-text"><strong>Categoría:</strong> {{product.category}}</p>
+                <p class="card-text"><strong>Precio:</strong> ${{product.price}}</p>
+                <p class="card-text"><strong>Stock disponible:</strong> {{product.stock}}</p>
+
+                <div class="d-flex justify-content-between align-items-center mt-4">
+                    <a href="/products" class="btn btn-outline-secondary">Volver a productos</a>
+                    <button class="btn btn-primary">Agregar al carrito</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
