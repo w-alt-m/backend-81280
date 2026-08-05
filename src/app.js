@@ -4,6 +4,7 @@ import productsRouter from './routes/products.router.js';
 import cartsRouter from './routes/carts.router.js';
 import { engine } from 'express-handlebars';
 import path from 'path';
+import viewsRouter from './routes/views.router.js';
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -14,6 +15,7 @@ connectDB();
 app.use(express.json());
 app.use('/api/products', productsRouter);
 app.use('/api/carts', cartsRouter);
+app.use('/', viewsRouter);
 
 // Handlebars
 app.engine('handlebars', engine());
