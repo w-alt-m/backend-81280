@@ -5,12 +5,23 @@ import cartsRouter from './routes/carts.router.js';
 import { engine } from 'express-handlebars';
 import path from 'path';
 import viewsRouter from './routes/views.router.js';
+import { createServer } from 'http';
+import { Server } from 'socket.io';
 
 const app = express();
+const httpServer = createServer(app);
+const io = new Server(httpServer);
+
 const PORT = process.env.PORT || 8080;
 
 // Connect to MongoDB database
 connectDB();
+
+// Middleware Socket.io
+app.use((req, res, next) => {
+    req.io = io;
+    next();
+});
 
 app.use(express.json());
 app.use('/api/products', productsRouter);
@@ -30,6 +41,10 @@ app.get('/test-view', (req, res) => {
     res.render('home');
 });
 
-app.listen(PORT, () => {
+io.on('connection', (socket) => {
+    console.log('Nuevo cliente conectado');
+});
+
+httpServer.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
