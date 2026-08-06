@@ -45,4 +45,19 @@ router.get('/products/:pid', async (req, res) => {
     }
 });
 
+router.get('/carts/:cid', async (req, res) => {
+    try {
+        const { cid } = req.params;
+        const cart = await cartModel.findById(cid).populate('products.product').lean();
+
+        if (!cart) {
+            return res.status(404).send('Carrito no encontrado');
+        }
+
+        res.render('cart', { cart });
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+});
+
 export default router;
