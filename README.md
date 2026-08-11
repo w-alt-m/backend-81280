@@ -1,4 +1,4 @@
-*Read this in other languages: [Español 🇪🇸](README.es.md)*
+*Leer esto en español: [Español 🇪🇸](README.es.md)*
 
 # E-Commerce Backend API & Web App
 

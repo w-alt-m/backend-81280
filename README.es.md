@@ -1,4 +1,4 @@
-*Leer esto en otros idiomas: [English 🇬🇧](README.md)*
+*Read this in English: [English 🇬🇧](README.md)*
 
 # Backend de E-Commerce & Aplicación Web
 
