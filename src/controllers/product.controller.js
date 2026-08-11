@@ -2,7 +2,8 @@ import productModel from '../models/product.model.js';
 
 export const getProducts = async (req, res) => {
     try {
-        const { limit, page } = req.params;
+        const limit = req.query.limit || req.params.limit;
+        const page = req.query.page || req.params.page;
 
         const parsedLimit = Number(limit) || 10;
         const parsedPage = Number(page) || 1;

@@ -1,11 +1,23 @@
 import { Router } from 'express';
 import productModel from '../models/product.model.js';
+import cartModel from '../models/cart.model.js';
 
 const router = Router();
 
+router.get('/', (req, res) => {
+    res.redirect('/products');
+});
+
 router.get('/products', async (req, res) => {
     try {
-        const products = await productModel.find().lean();
+        const limit = Number(req.query.limit) || 10;
+        const page = Number(req.query.page) || 1;
+
+        const products = await productModel.find()
+            .skip((page - 1) * limit)
+            .limit(limit)
+            .lean();
+
         res.render('products', { products });
     } catch (error) {
         res.status(500).send(error.message);
