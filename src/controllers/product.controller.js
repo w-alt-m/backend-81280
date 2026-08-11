@@ -22,6 +22,10 @@ export const createProduct = async (req, res) => {
     try {
         const newProduct = req.body;
         const result = await productModel.create(newProduct);
+
+        const products = await productModel.find().lean();
+        req.io.emit('productsUpdated', products);
+
         res.status(201).json({ status: 'success', payload: result });
     } catch (error) {
         res.status(400).json({ status: 'error', error: error.message });
@@ -57,6 +61,10 @@ export const deleteProduct = async (req, res) => {
         const { pid } = req.params;
         const deletedProduct = await productModel.findByIdAndDelete(pid);
         if (!deletedProduct) return res.status(404).json({ status: 'error', error: 'Producto no encontrado' });
+
+        const products = await productModel.find().lean();
+        req.io.emit('productsUpdated', products);
+
         res.json({ status: 'success', message: 'Producto eliminado correctamente' });
     } catch (error) {
         res.status(500).json({ status: 'error', error: error.message });
